@@ -1,0 +1,73 @@
+﻿@model IEnumerable<PRN_Project.Models.Product>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1 class="text-center" style="color:brown">Manage Product</h1>
+
+<button class="btn btn-primary" style="margin-bottom: 12px">
+    <a asp-action="Create" style="color: #fff; text-decoration: none"><i class="fa fa-plus-circle" aria-hidden="true"></i> Add New Product</a>
+</button>
+
+<table class="table" id="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+               Images
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+           
+            <th>
+                @Html.DisplayNameFor(model => model.Stock)
+            </th>
+            <th>
+                Category
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td >
+                    <img style="height:100px" src="@Html.DisplayFor(modelItem => item.Img)"> </img>
+                
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+          
+            <td>
+                @Html.DisplayFor(modelItem => item.Stock)
+            </td>
+            <td>
+                    @Html.DisplayFor(modelItem => item.Cate.NameCid)
+            </td>
+            <td>
+                    <i class="fa fa-edit" title="Edit"></i>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <i class="fa fa-id-card" aria-hidden="true"></i>
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <i class="fa fa-trash" aria-hidden="true"></i>
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

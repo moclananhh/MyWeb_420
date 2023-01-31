@@ -1,0 +1,50 @@
+﻿@model IEnumerable<PRN_Project.Models.Bill>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1 class="text-center" style="color:brown">Manager Bills</h1>
+
+<table class="table" id="table">
+    <thead>
+        <tr>
+            <th>
+                Bill ID
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Total)
+            </th>
+            <th>
+                Account ID
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BillId)
+                </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Total)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdAccountNavigation.Id)
+            </td>
+            <td>
+                    <i class="fa fa-id-card" aria-hidden="true"></i>
+                <a asp-action="Details" asp-route-id="@item.BillId">Details</a> 
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

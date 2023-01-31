@@ -1,0 +1,46 @@
+﻿@model IEnumerable<PRN_Project.Models.Category>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1 class="text-center" style="color:brown">Manage Category</h1>
+
+<button class="btn btn-primary" style="margin-bottom: 12px">
+    <a asp-action="Create" style="color: #fff; text-decoration: none"><i class="fa fa-plus-circle" aria-hidden="true"></i> Add New Category</a>
+</button>
+
+<table class="table" id="table">
+    <thead>
+        <tr>
+            <th>
+                Category ID
+            </th>
+            <th>
+                Categry Name
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Idcid)
+                </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NameCid)
+            </td>
+            <td>
+                    <i class="fa fa-edit" title="Edit"></i>
+                <a asp-action="Edit" asp-route-id="@item.Idcid">Edit</a> |
+                    <i class="fa fa-id-card" aria-hidden="true"></i>
+                <a asp-action="Details" asp-route-id="@item.Idcid">Details</a> |
+                    <i class="fa fa-trash" aria-hidden="true"></i>
+                <a asp-action="Delete" asp-route-id="@item.Idcid">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
